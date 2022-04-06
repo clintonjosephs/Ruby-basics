@@ -2,6 +2,7 @@ class Animal
     attr_accessor :name
     attr_reader :id
     attr_reader :type
+    attr_accessor :owner, :visits
 
     # attr_reader :variable is used to shorten the getter method
     # attr_accessor :varible is used to shorten the setter method
@@ -11,6 +12,8 @@ class Animal
         @name = name
         @number_of_legs = number_of_legs
         @type = type
+        # @liked_food = NoFood.new()
+        @visits = []
     end
 
     def number_of_legs
@@ -22,23 +25,14 @@ class Animal
         # this method here is an example of encapsulation
        "grrrr"
     end
+
+    def remove_leg
+        remover = Remover.new()
+        @number_of_legs = remover.decrease(@number_of_legs)
+    end
+
+    def owner=(owner)
+        @owner = owner
+        owner.animals.push(self) unless owner.animals.include?(self)
+    end
 end
-
-# animal_dog = Animal.new("dog", 4, "Rex")
-# animal_spider = Animal.new("spider", 8, "Wilma")
-
-# puts animal_dog.bring_a_stick()
-# puts animal_spider.bring_a_stick()
-
-# puts animal_dog.make_a_web()
-# puts animal_spider.make_a_web()
-
-
-dog = Dog.new("black", "Rex")
-spider = Spider.new(85, "Wilma")
-
-puts dog.bring_a_stick()
-puts spider.bring_a_stick()
-
-puts dog.make_a_web()
-puts spider.make_a_web()
